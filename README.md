@@ -77,3 +77,7 @@ _callback function called when closing starts_
 
 #### `onCloseComplete` (Function)
 _callback functions called when closing is finished_
+
+### API
+
+Use the `open()` and `close()` methods to manually open and close Simplezoom

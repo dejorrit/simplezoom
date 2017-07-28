@@ -4,7 +4,7 @@
 	"description": "Add a simple and lightweight zoom functionality to images, videos or any other element",
 	"main": "dist/simplezoom.js",
 	"files": [
-		"dist/"
+		"lib/"
 	],
 	"scripts": {
 		"watch": "NODE_ENV=development webpack -d --watch --progress",
@@ -38,8 +38,5 @@
 		"eslint": "^4.2.0",
 		"uglifyjs-webpack-plugin": "^0.4.6",
 		"webpack": "^3.1.0"
-	},
-	"dependencies": {
-		"babel-polyfill": "^6.13.0"
 	}
 }
