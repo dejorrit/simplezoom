@@ -4,19 +4,17 @@ Add a simple and lightweight zoom functionality to images, videos or any other e
 
 ## How to use
 
-### Get the module
-
 ```bash
 npm install simplezoom --save
 ```
 
-### Import it into your project
+### Require the module
 
 ```javascript
 var Simplezoom = require('simplezoom');
 ```
 
-### Initialize Simplezoom on an element
+### Initialize on an element
 
 ```javascript
 var myImage = document.querySelector('.my-image');
@@ -24,7 +22,7 @@ var myImage = document.querySelector('.my-image');
 new Simplezoom(myImage);
 ```
 
-### Optionally add options
+### Optionally add some options
 
 ```javascript
 var myImage = document.querySelector('.my-image');
@@ -40,33 +38,42 @@ new Simplezoom(myImage, {
 #### `padding` (Number)
 default: `50` (in pixels)
 
+
 #### `openDelay` (Number)
 default: `0` (in milliseconds)
+
 
 #### `closeDelay` (Number)
 default: `0` (in milliseconds)
 
+
 #### `transitionDuration` (Number)
 default: `350` (in milliseconds)
 
+
 #### `closeOnScroll` (Boolean)
-Close when scrolling
+_close when scrolling_
 
 default: `true`
+
 
 #### `closeOnEscape` (Boolean)
-Close with pressing the escape key
+_close with pressing the escape key_
 
 default: `true`
 
+
 #### `onOpen` (Function)
-callback function called when opening starts
+_callback function called when opening starts_
+
 
 #### `onOpenComplete` (Function)
-callback functions called when opening is finished
+_callback functions called when opening is finished_
+
 
 #### `onClose` (Function)
-callback function called when closing starts
+_callback function called when closing starts_
+
 
 #### `onCloseComplete` (Function)
-callback functions called when closing is finished
+_callback functions called when closing is finished_
