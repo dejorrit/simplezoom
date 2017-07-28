@@ -1,6 +1,6 @@
 let options = {
 	'padding': 50,
-	'openDelay': 350,
+	'openDelay': 0,
 	'closeDelay': 0,
 	'transitionDuration': 350,
 	'closeOnScroll': true,
@@ -13,7 +13,7 @@ const STATE_CLOSED = 'closed',
 	STATE_OPENED = 'opened',
 	STATE_OPENING = 'opening';
 
-export default class Simplezoom {
+module.exports = class {
 
 	constructor(element, userOptions = {}) {
 		Object.assign(options, userOptions);
