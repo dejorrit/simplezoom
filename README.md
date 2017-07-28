@@ -8,7 +8,13 @@ Add a simple and lightweight zoom functionality to images, videos or any other e
 npm install simplezoom --save
 ```
 
-### Require the module
+### Import or require the module
+
+```javascript
+import Simplezoom from 'simplezoom';
+```
+
+or
 
 ```javascript
 var Simplezoom = require('simplezoom');
