@@ -1,8 +1,8 @@
 {
 	"name": "simplezoom",
 	"version": "1.0.0",
-	"description": "Add a simple and lightweigt zoom functionality to images, videos or any other element",
-	"main": "dist/simplezoom.min.js",
+	"description": "Add a simple and lightweight zoom functionality to images, videos or any other element",
+	"main": "dist/simplezoom.js",
 	"scripts": {
 		"watch": "NODE_ENV=development webpack -d --watch --progress",
 		"build": "NODE_ENV=production webpack -p --progress"
