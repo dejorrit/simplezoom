@@ -1,0 +1,38 @@
+{
+	"env": {
+		"production": {
+			"presets": [
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": [
+								"last 3 versions",
+								"Android >= 4.2",
+								"ie >= 10",
+								"iOS >= 7"
+							]
+						},
+						"useBuiltIns": true,
+						"modules": false
+					}
+				]
+			]
+		},
+		"development": {
+			"presets": [
+				[
+					"env",
+					{
+						"targets": {
+							"browsers": [
+								"last 1 version"
+							]
+						},
+						"modules": false
+					}
+				]
+			]
+		}
+	}
+}
