@@ -1,42 +1,42 @@
 {
-	"name": "simplezoom",
-	"version": "1.0.0",
-	"description": "Add a simple and lightweight zoom functionality to images, videos or any other element",
-	"main": "dist/simplezoom.js",
-	"files": [
-		"lib/"
-	],
-	"scripts": {
-		"watch": "NODE_ENV=development webpack -d --watch --progress",
-		"build": "NODE_ENV=production webpack -p --progress"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/dejorrit/simplezoom.git"
-	},
-	"keywords": [
-		"zoom",
-		"image",
-		"imagezoom",
-		"videozoom",
-		"lightbox"
-	],
-	"author": "Jorrit Tinholt",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/dejorrit/simplezoom/issues"
-	},
-	"homepage": "https://github.com/dejorrit/simplezoom#readme",
-	"devDependencies": {
-		"babel-cli": "^6.11.4",
-		"babel-core": "^6.25.0",
-		"babel-eslint": "^7.2.3",
-		"babel-loader": "^7.1.1",
-		"babel-preset-env": "^1.6.0",
-		"babel-preset-es2015": "^6.22.0",
-		"browserslist": "^2.1.5",
-		"eslint": "^4.2.0",
-		"uglifyjs-webpack-plugin": "^0.4.6",
-		"webpack": "^3.1.0"
-	}
+  "name": "simplezoom",
+  "version": "1.0.1",
+  "description": "Add a simple and lightweight zoom functionality to images, videos or any other element",
+  "main": "dist/simplezoom.js",
+  "files": [
+    "lib/"
+  ],
+  "scripts": {
+    "watch": "NODE_ENV=development webpack -d --watch --progress",
+    "build": "NODE_ENV=production webpack -p --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dejorrit/simplezoom.git"
+  },
+  "keywords": [
+    "zoom",
+    "image",
+    "imagezoom",
+    "videozoom",
+    "lightbox"
+  ],
+  "author": "Jorrit Tinholt",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dejorrit/simplezoom/issues"
+  },
+  "homepage": "https://github.com/dejorrit/simplezoom#readme",
+  "devDependencies": {
+    "babel-cli": "^6.11.4",
+    "babel-core": "^6.25.0",
+    "babel-eslint": "^7.2.3",
+    "babel-loader": "^7.1.1",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-es2015": "^6.22.0",
+    "browserslist": "^2.1.5",
+    "eslint": "^4.2.0",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^3.1.0"
+  }
 }
