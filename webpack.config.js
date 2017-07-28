@@ -40,14 +40,9 @@ module.exports = () => {
 		]
 	};
 
-	if (env === 'development') {
-		webpackConfig.devtool = 'cheap-eval-source-map';
-	}
-
 	if (env === 'production') {
-		webpackConfig.devtool = 'source-map';
 		webpackConfig.plugins.push(new UglifyJsPlugin({
-			sourceMap: true,
+			sourceMap: false,
 			extractComments: true,
 		}));
 		webpackConfig.plugins.push(new webpack.optimize.OccurrenceOrderPlugin());
