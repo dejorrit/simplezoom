@@ -2,6 +2,8 @@
 
 Add a simple and lightweight zoom functionality to images, videos or any other element.
 
+![alt text](https://media.giphy.com/media/l1J3ol1tG2KiTK0w0/giphy.gif "Simplezoom example")
+
 ## How to use
 
 ```bash
