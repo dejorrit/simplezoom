@@ -1,4 +1,4 @@
-let options = {
+const OPTIONS = {
 	'padding': 50,
 	'openDelay': 0,
 	'closeDelay': 0,
@@ -16,7 +16,7 @@ const STATE_CLOSED = 'closed',
 module.exports = class {
 
 	constructor(element, userOptions = {}) {
-		Object.assign(options, userOptions);
+		this.options = Object.assign({}, OPTIONS, userOptions);
 
 		this.el = element;
 		this.state = STATE_CLOSED;
@@ -36,17 +36,7 @@ module.exports = class {
 		}
 
 		this.state = STATE_OPENING;
-		onOpen();
-
-		setTimeout(() => {
-			this.showOverlayElement();
-			this.saveOriginalStyles();
-			this.animateToFullScreen();
-			this.addEventListeners();
-
-			this.state = STATE_OPENED;
-			onOpenComplete();
-		}, options.openDelay);
+		this.onOpen();
 	}
 
 	close() {
@@ -55,19 +45,7 @@ module.exports = class {
 		}
 
 		this.state = STATE_CLOSING;
-		onClose();
-
-		setTimeout(() => {
-			this.hideOverlayElement();
-			this.animateToOriginalPosition();
-
-			this.state = STATE_CLOSED;
-			onCloseComplete();
-		}, options.closeDelay);
-
-		setTimeout(() => {
-			this.cleanup();
-		}, options.closeDelay + options.transitionDuration);
+		this.onClose();
 	}
 
 	toggle() {
@@ -78,6 +56,58 @@ module.exports = class {
 		}
 	}
 
+	onOpen() {
+		setTimeout(() => {
+			this.showOverlayElement();
+			this.saveOriginalStyles();
+			this.animateToFullScreen();
+			this.addEventListeners();
+		}, this.options.openDelay);
+
+		setTimeout(() => {
+			this.state = STATE_OPENED;
+			this.onOpenComplete();
+		}, this.options.openDelay + this.options.transitionDuration);
+
+		// callback
+		if (this.options.onOpen && typeof this.options.onOpen === 'function') {
+			this.options.onOpen();
+		}
+	}
+
+	onOpenComplete() {
+		// callback
+		if (this.options.onOpenComplete && typeof this.options.onOpenComplete === 'function') {
+			this.options.onOpenComplete();
+		}
+	}
+
+	onClose() {
+		setTimeout(() => {
+			this.hideOverlayElement();
+			this.animateToOriginalPosition();
+		}, this.options.closeDelay);
+
+		setTimeout(() => {
+			this.state = STATE_CLOSED;
+			this.onCloseComplete();
+		}, this.options.closeDelay +  + this.options.transitionDuration);
+
+		// callback
+		if (this.options.onClose && typeof this.options.onClose === 'function') {
+			this.options.onClose();
+		}
+	}
+
+	onCloseComplete() {
+		this.cleanup();
+
+		// callback
+		if (this.options.onCloseComplete && typeof this.options.onCloseComplete === 'function') {
+			this.options.onCloseComplete();
+		}
+	}
+
 	onKeyUp(event) {
 		if (event.key === 'Escape' || event.code === 'Escape' || event.keyCode === 27) {
 			this.close();
@@ -85,11 +115,11 @@ module.exports = class {
 	}
 
 	addEventListeners() {
-		if (options.closeOnScroll) {
+		if (this.options.closeOnScroll) {
 			window.addEventListener('scroll', this.close);
 		}
 
-		if (options.closeOnEscape) {
+		if (this.options.closeOnEscape) {
 			document.addEventListener('keyup', this.onKeyUp);
 		}
 
@@ -99,11 +129,11 @@ module.exports = class {
 	}
 
 	removeEventListeners() {
-		if (options.closeOnScroll) {
+		if (this.options.closeOnScroll) {
 			window.removeEventListener('scroll', this.close);
 		}
 
-		if (options.closeOnEscape) {
+		if (this.options.closeOnEscape) {
 			document.removeEventListener('keyup', this.onKeyUp);
 		}
 
@@ -138,7 +168,7 @@ module.exports = class {
 			position = 'relative';
 		}
 
-		Object.assign(this.el.style, getAdditionalTargetStyles(), {
+		Object.assign(this.el.style, this.getAdditionalTargetStyles(), {
 			'position': position,
 			'transform': `translate(${translate.X}px, ${translate.Y}px) scale(${zoom})`
 		});
@@ -149,7 +179,7 @@ module.exports = class {
 
 		setTimeout(() => {
 			this.el.removeAttribute('style');
-		}, options.closeDelay + options.transitionDuration);
+		}, this.options.closeDelay + this.options.transitionDuration);
 	}
 
 	calculateTranslateValues() {
@@ -171,16 +201,23 @@ module.exports = class {
 			elementH = rect.height,
 			elementW = rect.width,
 
-			viewportW = window.innerWidth - options.padding,
-			viewportH = window.innerHeight - options.padding,
+			viewportW = window.innerWidth - this.options.padding,
+			viewportH = window.innerHeight - this.options.padding,
 
 			shouldStretchToHeight = (elementH / elementW) > (viewportH / viewportW);
 
 		return shouldStretchToHeight ? (viewportH / elementH) : (viewportW / elementW);
 	}
 
+	createOverlayElement() {
+		let overlay = document.createElement('div');
+		Object.assign(overlay.style, this.getOverlayStyles());
+
+		return document.body.appendChild(overlay);
+	}
+
 	showOverlayElement() {
-		this.overlay = createOverlayElement();
+		this.overlay = this.createOverlayElement();
 
 		let repaint = this.overlay.offsetWidth; // trigger repaint before animating
 		this.overlay.style.opacity = 0.8;
@@ -193,64 +230,30 @@ module.exports = class {
 			if (this.overlay && this.overlay.parentNode) {
 				this.overlay.parentNode.removeChild(this.overlay);
 			}
-		}, options.closeDelay + options.transitionDuration);
+		}, this.options.closeDelay + this.options.transitionDuration);
 	}
-}
 
-function getAdditionalTargetStyles() {
-	return {
-		'willChange': 'transform',
-		'transition': `transform ${options.transitionDuration}ms ease`,
-		'zIndex': 10000
+	getAdditionalTargetStyles() {
+		return {
+			'willChange': 'transform',
+			'transition': `transform ${this.options.transitionDuration}ms ease`,
+			'zIndex': 10000
+		}
 	}
-}
 
-function getOverlayStyles() {
-	return {
-		'position': 'fixed',
-		'top': 0,
-		'right': 0,
-		'bottom': 0,
-		'left': 0,
-		'cursor': 'zoom-out',
-		'opacity': 0,
-		'backgroundColor': '#000',
-		'transition': `opacity ${options.transitionDuration}ms ease`,
-		'zIndex': 9999
+	getOverlayStyles() {
+		return {
+			'position': 'fixed',
+			'top': 0,
+			'right': 0,
+			'bottom': 0,
+			'left': 0,
+			'cursor': 'zoom-out',
+			'opacity': 0,
+			'backgroundColor': '#000',
+			'transition': `opacity ${this.options.transitionDuration}ms ease`,
+			'zIndex': 9999
+		}
 	}
-}
 
-function createOverlayElement() {
-	let overlay = document.createElement('div');
-	Object.assign(overlay.style, getOverlayStyles());
-
-	return document.body.appendChild(overlay);
-}
-
-/*
- * Callback methods
- * */
-
-function onOpen() {
-	if (options.onOpen && typeof options.onOpen === 'function') {
-		options.onOpen();
-	}
-}
-
-function onOpenComplete() {
-	if (options.onOpenComplete && typeof options.onOpenComplete === 'function') {
-		options.onOpenComplete();
-	}
-}
-
-function onClose() {
-	if (options.onClose && typeof options.onClose === 'function') {
-		options.onClose();
-	}
-}
-
-function onCloseComplete() {
-	if (options.onCloseComplete && typeof options.onCloseComplete === 'function') {
-		options.onCloseComplete();
-	}
-}
+};
