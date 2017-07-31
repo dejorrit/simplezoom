@@ -1,0 +1,79 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Simplezoom demo</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Simplezoom demo">
+	<meta name="author" content="Jorrit Tinholt">
+	
+	<style>
+		.container {
+			max-width: 600px;
+			margin: 0 auto;
+			padding: 30px;
+		}
+		
+		h1 {
+			margin-bottom: 1.4em;
+			font-size: 32px;
+			font-family: 'Arial', sans-serif;
+			line-height: 1.4;
+		}
+		
+		p {
+			margin-bottom: 1.4em;
+			font-size: 18px;
+			font-family: 'Georgia', serif;
+			line-height: 1.4;
+		}
+		
+		p a {
+			color: inherit;
+			text-decoration: none;
+			transition: border-bottom .25s ease;
+			border-bottom: 3px solid #ccc;
+		}
+		
+		p a:hover,
+		p a:focus {
+			border-bottom-color: #000;
+		}
+		
+		p img[align] {
+			margin-bottom: 1em;
+		}
+		
+		p img[align="right"] {
+			margin-left: 1.4em;
+		}
+	</style>
+</head>
+
+<body>
+
+<div class="container">
+	<h1>Simplezoom demo</h1>
+	
+	<p>
+		<img class="js-image" src="http://www.pleasetrump.it/1000x500" width="100%"/>
+	</p>
+	
+	<p>
+		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+	</p>
+	
+	<p>
+		<img class="js-image" src="http://www.pleasetrump.it/300x200" align="right"/>
+		Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
+	</p>
+	
+	<p>
+		Check it out on <a href="https://github.com/dejorrit/simplezoom">Github</a> or <a href="https://npmjs.org/package/simplezoom">npmjs</a>.
+	</p>
+</div>
+
+<script src="dist/demo.js"></script>
+</body>
+</html>
