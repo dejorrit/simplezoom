@@ -2,7 +2,9 @@
 
 Add a simple and lightweight zoom functionality to images, videos or any other element.
 
-![alt text](https://media.giphy.com/media/l1J3ol1tG2KiTK0w0/giphy.gif "Simplezoom example")
+## Demo
+
+[Check out the demo](https://dejorrit.github.io/simplezoom/demo/index.html)
 
 ## How to use
 
